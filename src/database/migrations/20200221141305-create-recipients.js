@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('recipients ', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -11,15 +11,26 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      street: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      isAdmin: {
-        type: Sequelize.BOOLEAN,
+      number: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      password_hash: {
+      complement: {
+        type: Sequelize.STRING,
+      },
+      state: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      zipCode: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -35,6 +46,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('recipients');
   },
 };
