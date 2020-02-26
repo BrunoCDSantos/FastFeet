@@ -1,14 +1,22 @@
 import { Router } from 'express';
 
 import SessionController from './App/Controllers/SessionController';
-// import Auth from './App/middlewares/auth';
 import RecipientsController from './App/Controllers/RecipientsController';
 
-const router = new Router();
+import Auth from './App/middlewares/auth';
+import AuthAdmin from './App/middlewares/authAdmin';
 
-// router.use(Auth);
-router.post('/login', SessionController.store);
+const routes = new Router();
 
-router.post('/recipient', RecipientsController.store);
+routes.post('/login', SessionController.store);
 
-export default router;
+routes.use(Auth);
+routes.use(AuthAdmin);
+
+routes.post('/recipient', RecipientsController.store);
+routes.put('/recipient/:id', RecipientsController.update);
+routes.get('/recipient', RecipientsController.index);
+routes.get('/recipient/:id', RecipientsController.show);
+routes.delete('/recipient/:id', RecipientsController.delete);
+
+export default routes;
